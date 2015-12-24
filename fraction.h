@@ -4,6 +4,7 @@
 
 #ifndef FRACTION_H
 #define FRACTION_H
+#include <stdexcept>
 
 class Fraction{
 	int num, den;
@@ -21,6 +22,7 @@ class Fraction{
 	
 	// getters and setters
 	void setNumerator(const int num);
+	// throws invalid_argument exception if denom = 0
 	void setDenominator(const int denom);
 
 	int getNumerator() const;
