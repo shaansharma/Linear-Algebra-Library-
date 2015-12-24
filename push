@@ -1,0 +1,19 @@
+#!/bin/bash
+
+if [ ${#} -lt 1 ]; then
+	echo "Provide commit message" 1>&2
+	exit 1
+fi
+
+if [ ! ${#} -eq 2 ] || [ ! ${2} = "-np" ]; then
+	./pull
+else
+	echo "Didn't pull"
+fi
+git status 
+git add . 
+git commit -m "${1}" 
+git push origin master > /dev/null 2> /dev/null
+if [ ${?} -ne 0 ]; then
+	echo "Push failed"
+fi
