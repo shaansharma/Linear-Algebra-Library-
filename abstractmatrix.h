@@ -7,6 +7,7 @@
 class Fraction;
 
 class AbstractMatrix{
+	protected:	
    int numRows, numCols;
 	Fraction **theGrid;
 
