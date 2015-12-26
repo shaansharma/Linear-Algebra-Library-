@@ -17,7 +17,7 @@ class Fraction{
 	public:
 	static const Fraction Zero;
 
-	Fraction(const int num, const int den);
+	Fraction(const int num = 0, const int den = 1);
 	Fraction(const Fraction &other);
 	
 	// getters and settersi

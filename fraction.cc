@@ -34,7 +34,7 @@ Fraction Fraction::getAbsolute() const {
 }
 
 // ctors
-Fraction::Fraction(const int num = 0, const int den = 1): num(num), den(den){}
+Fraction::Fraction(const int num, const int den): num(num), den(den){}
 
 Fraction::Fraction(const Fraction &other): num(other.num), den(other.den){}
 
