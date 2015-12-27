@@ -23,10 +23,10 @@ class Vector : public AbstractMatrix {
 	Fraction getSquareSize() const;
 
 	// projection of *this onto given Vector
-	Vector projectionOnto(const Vector &other);
+	Vector projectionOnto(const Vector &other) const;
 
 	// perpendicular of *this onto given Vector
-	Vector perpendicularOnto(const Vector &other);
+	Vector perpendicularOnto(const Vector &other) const;
 };
 
 // scalar product
@@ -43,6 +43,9 @@ Vector operator%(const Vector &v1, const Vector &v2);
 
 // addition
 Vector operator+(const Vector &v1, const Vector &v2);
+
+// subtracttin
+Vector operator-(const Vector &v1, const Vector &v2);
 
 // two vectors are orthogonal if the angle between them is 90 degrees (pi/2 radians)
 bool areOrthogonal(const Vector &v1, const Vector &v2);
