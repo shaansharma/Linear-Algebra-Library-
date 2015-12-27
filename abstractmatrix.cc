@@ -12,6 +12,29 @@ AbstractMatrix::~AbstractMatrix(){
 	deleteGrid();	
 }
 
+AbstractMatrix::AbstractMatrix(const AbstractMatrix &other){
+	this->theGrid = new Fraction *[other.numRows * other.numCols];
+	this->numRows = other.numRows;
+	this->numCols = other.numRows;
+	
+	const int size = this->numRows * this->numCols;
+	for(int i = 0; i < size; i++){
+		this->theGrid[i] = new Fraction(*other.theGrid[i]);
+	}
+}
+
+AbstractMatrix &AbstractMatrix::operator=(const AbstractMatrix &other){
+	deleteGrid();
+	this->theGrid = new Fraction *[other.numRows * other.numCols];
+	this->numRows = other.numRows;
+	this->numCols = other.numRows;
+	
+	const int size = this->numRows * this->numCols;
+	for(int i = 0; i < size; i++){
+		this->theGrid[i] = new Fraction(*other.theGrid[i]);
+	}
+}
+
 // deletes theGrid and all of it's contents
 void AbstractMatrix::deleteGrid(){
 	int size = this->numRows * this->numCols;

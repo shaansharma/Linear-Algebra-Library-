@@ -14,7 +14,16 @@ class Vector : public AbstractMatrix {
 	Vector(const int r);
 	Vector(Fraction **array, const int r);
 	Vector(const Vector &other);
+	
+	Vector &operator=(const Vector &other);
 
+	double getSize() const;
+
+	// projection of *this onto given Vector
+	Vector projectionOnto(const Vector &other);
+
+	// perpendicular of *this onto given Vector
+	Vector perpendicularOnto(const Vector &other);
 };
 
 // scalar product
@@ -29,4 +38,9 @@ int operator*(const Vector &v1, const Vector &v2);
 // cross product
 Vector operator~(const Vector &v1, const Vector &v2);
 
+// addition
+Vector operator+(const Vector &v1, const Vector &v2);
+
+// two vectors are orthogonal if the angle between them is 90 degrees (pi/2 radians)
+bool areOrthogonal(const Vector &v1, const Vector &v2);
 #endif
