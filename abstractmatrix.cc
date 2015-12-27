@@ -69,8 +69,8 @@ void AbstractMatrix::setData(Fraction **array, const int r, const int c){
 }
 
 void AbstractMatrix::checkBounds(const int row, const int col) const{
-if(row < 0 || col < 0) throw out_of_range("Cannot access entry that is less than 0");
-	if(row >= this->numRows || col >= this->numCols) throw out_of_range("Row/Col out of range");
+	if(row < 1 || col < 1) throw out_of_range("Cannot access entry that is less than 1");
+	if(row > this->numRows || col > this->numCols) throw out_of_range("Row/Col out of range");
 }
 
 // at(...) returns a new Fraction object at the location of the given row and column
@@ -79,20 +79,20 @@ if(row < 0 || col < 0) throw out_of_range("Cannot access entry that is less than
 //		  at(r) for Vector
 Fraction AbstractMatrix::at(const int row, const int col) const{
 	checkBounds(row, col);	
-	return *this->theGrid[row * this->numCols + col];
+	return *this->theGrid[(row-1) * this->numCols + (col-1)];
 }
 
 
 void AbstractMatrix::replace(const Fraction &f, const int row, const int col){
 	checkBounds(row, col);
-	delete this->theGrid[row * this->numCols + col];
-	this->theGrid[row * this->numCols + col] = new Fraction(f);
+	delete this->theGrid[(row-1) * this->numCols + (col-1)];
+	this->theGrid[(row-1) * this->numCols + (col-1)] = new Fraction(f);
 }
 
 void AbstractMatrix::replace(const int i, const int row, const int col){
 	checkBounds(row, col);
-	delete this->theGrid[row * this->numCols + col];
-	this->theGrid[row * this->numCols + col] = new Fraction(i);
+	delete this->theGrid[(row-1) * this->numCols + (col-1)];
+	this->theGrid[(row-1) * this->numCols + (col-1)] = new Fraction(i);
 }
 
 // getters

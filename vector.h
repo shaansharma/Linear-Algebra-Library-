@@ -10,15 +10,17 @@ class Fraction;
 class Vector : public AbstractMatrix {
 	
 	public:
-	Vector(int *array, const int r);
+	Vector(int *array = 0, const int r = 1);
 	Vector(const int r);
-	Vector(Fraction **array, const int r);
+	Vector(Fraction **array = 0, const int r = 1);
 	Vector(const Vector &other);
 	
 	Vector &operator=(const Vector &other);
 
 	// returns the vector length 
 	double getSize() const;
+	// returns the square of the size, for the most accurate size
+	Fraction getSquareSize() const;
 
 	// projection of *this onto given Vector
 	Vector projectionOnto(const Vector &other);

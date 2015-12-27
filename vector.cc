@@ -24,11 +24,50 @@ Vector &Vector::operator=(const Vector &other){
 }
 
 double Vector::getSize() const{
+	return sqrt(getSquareSum().toDouble());
+}
+
+Fraction Vector::getSquareSize() const{
 	Fraction sum(0);
-	
-	for(int i = 0; i < getNumRows(); i++){
-		sum += at(i) * at(i);
+
+	// matrices are not 0 indexed
+	for(int i = 1; i <= getNumRows(); i++){
+		sum += (at(i) * at(i)); 
 	}
 
-	return sqrt(sum.toDouble());
+	return sum; 
 }
+
+Vector Vector::projectionOnto(const Vector &other) const{
+	Fraction factor = (*this * other) * other.getSquareSize().reciprocal();
+	Vector projection = factor * other;
+	return projection;
+}
+
+Vector Vector::perpendicularOnto(const Vector &other) const{
+	return *this - this->projectionOnto(other);
+}
+
+// Scalar Product
+Vector operator*(const int factor, const Vector &v){
+	Fraction f(factor);
+	return f * v;
+}
+
+Vector operator*(const Vector &v, const int factor){
+	return factor * v;
+}
+
+Vector operator*(const Fraction &f, const Vector &v){
+	int size = numRows * numCols;
+	for(int i = 0; i < size; i++){
+		theGrid *= f;
+	}
+
+	return *this;
+}
+
+Vector operator*(const Vector &v, const Fraction &f){
+	return f * v;
+}
+
