@@ -17,6 +17,7 @@ class Vector : public AbstractMatrix {
 	
 	Vector &operator=(const Vector &other);
 
+	// returns the vector length 
 	double getSize() const;
 
 	// projection of *this onto given Vector
@@ -36,7 +37,7 @@ Vector operator*(const Vector &v, const Fraction &f);
 int operator*(const Vector &v1, const Vector &v2);
 
 // cross product
-Vector operator~(const Vector &v1, const Vector &v2);
+Vector operator%(const Vector &v1, const Vector &v2);
 
 // addition
 Vector operator+(const Vector &v1, const Vector &v2);

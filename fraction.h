@@ -47,8 +47,12 @@ class Fraction{
 	// returns absolute values
 	int abs(const int a) const;
 	Fraction getAbsolute() const;
-
+	
+	// if fraction is a/b, returns a new fraction that is b/a
 	Fraction reciprocal() const;
+
+	// returns a/b as a double
+	double toDouble() const;
 };
 
 // common math operators
