@@ -58,13 +58,15 @@ Vector operator*(const Vector &v, const int factor){
 	return factor * v;
 }
 
+// FIXME: change to member function
 Vector operator*(const Fraction &f, const Vector &v){
 	int size = numRows * numCols;
+	Vector newVector = v;
 	for(int i = 0; i < size; i++){
 		theGrid *= f;
 	}
 
-	return *this;
+	
 }
 
 Vector operator*(const Vector &v, const Fraction &f){
