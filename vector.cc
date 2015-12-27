@@ -49,27 +49,3 @@ Vector Vector::perpendicularOnto(const Vector &other) const{
 }
 
 // Scalar Product
-Vector operator*(const int factor, const Vector &v){
-	Fraction f(factor);
-	return f * v;
-}
-
-Vector operator*(const Vector &v, const int factor){
-	return factor * v;
-}
-
-// FIXME: change to member function
-Vector operator*(const Fraction &f, const Vector &v){
-	int size = numRows * numCols;
-	Vector newVector = v;
-	for(int i = 0; i < size; i++){
-		theGrid *= f;
-	}
-
-	
-}
-
-Vector operator*(const Vector &v, const Fraction &f){
-	return f * v;
-}
-

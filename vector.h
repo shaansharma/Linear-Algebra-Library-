@@ -27,25 +27,27 @@ class Vector : public AbstractMatrix {
 
 	// perpendicular of *this onto given Vector
 	Vector perpendicularOnto(const Vector &other) const;
+
+	// scalar product
+	Vector operator*(const int factor) const;
+	Vector operator*(const Fraction &f) const;
+
+	// dot product
+	int operator*(const Vector &other);
+
+	// cross product
+	Vector operator%(const Vector &other);
+
+	// addition
+	Vector operator+(const Vector &other);
+
+	// subtracttin
+	Vector operator-(const Vector &other);
 };
 
-// scalar product
+// scalar profuct
 Vector operator*(const int factor, const Vector &v);
-Vector operator*(const Vector &v, const int factor);
 Vector operator*(const Fraction &f, const Vector &v);
-Vector operator*(const Vector &v, const Fraction &f);
-
-// dot product
-int operator*(const Vector &v1, const Vector &v2);
-
-// cross product
-Vector operator%(const Vector &v1, const Vector &v2);
-
-// addition
-Vector operator+(const Vector &v1, const Vector &v2);
-
-// subtracttin
-Vector operator-(const Vector &v1, const Vector &v2);
 
 // two vectors are orthogonal if the angle between them is 90 degrees (pi/2 radians)
 bool areOrthogonal(const Vector &v1, const Vector &v2);
