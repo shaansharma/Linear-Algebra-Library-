@@ -41,8 +41,8 @@ class Fraction{
 	Fraction &operator*=(const Fraction &other);
 	Fraction &operator-=(const Fraction &other);
 	Fraction &operator/=(const Fraction &other);
-	Fraction &operator++();
-	Fraction &operator--();
+	Fraction &operator++(int i);
+	Fraction &operator--(int i);
 
 	// returns absolute values
 	int abs(const int a) const;

@@ -94,13 +94,13 @@ Fraction &Fraction::operator/=(const Fraction &other){
 	return *this;
 }
 
-Fraction &Fraction::operator++(){
+Fraction &Fraction::operator++(int i){
 	this->num += this->den;
 	reduce();
 	return *this;
 }
 
-Fraction &Fraction::operator--(){
+Fraction &Fraction::operator--(int i){
 	this->num -= this->den;
 	reduce();
 	return *this;
