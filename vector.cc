@@ -2,6 +2,9 @@
 #include "abstractmatrix.h"
 #include "fraction.h"
 #include <cmath>
+#include <stdexcept>
+
+using namespace std;
 
 // constructors
 
@@ -24,7 +27,7 @@ Vector &Vector::operator=(const Vector &other){
 }
 
 double Vector::getSize() const{
-	return sqrt(getSquareSum().toDouble());
+	return sqrt(getSquareSize().toDouble());
 }
 
 Fraction Vector::getSquareSize() const{
@@ -39,13 +42,83 @@ Fraction Vector::getSquareSize() const{
 }
 
 Vector Vector::projectionOnto(const Vector &other) const{
-	Fraction factor = (*this * other) * other.getSquareSize().reciprocal();
+	Fraction factor = (this->operator*(other)) * other.getSquareSize().reciprocal();
 	Vector projection = factor * other;
 	return projection;
 }
 
 Vector Vector::perpendicularOnto(const Vector &other) const{
-	return *this - this->projectionOnto(other);
+	return this->operator-(this->projectionOnto(other));
 }
 
 // Scalar Product
+
+Vector Vector::operator*(const int factor) const{
+	Fraction f(factor);
+	return this->operator*(f);
+}
+
+Vector Vector::operator*(const Fraction &f) const{
+	Vector newVector = *this;
+
+	for(int i = 0; i < this->numRows; i++){
+		*newVector.theGrid[i] *= f;
+	}
+
+	return newVector;
+}
+
+Vector operator*(const Fraction &f, const Vector &v){
+	return v * f;
+}
+
+Vector operator*(const int factor, const Vector &v){
+	return v * factor;
+}
+
+// dot product
+Fraction Vector::operator*(const Vector &other) const{
+	// throw exception if vectors are not same length
+	if(!areSameDimension(*this, other)) throw invalid_argument("Vectors must be of same dimension");
+
+	Fraction sum(0);
+	for(int i = 0; i < this->numRows; i++){
+		sum += *other.theGrid[i] * *this->theGrid[i];
+	}
+
+	return sum;
+}
+
+// TODO: cross product for 3-d vector
+
+// Addition
+Vector Vector::operator+(const Vector &other) const{
+	// throw exception if vectors are not same length
+	if(!areSameDimension(*this, other)) throw invalid_argument("Vectors must be of same dimension");
+
+	Fraction **array = new Fraction*[this->numRows];
+
+	for(int i = 0; i < this->numRows; i++){
+		Fraction *f = new Fraction(*this->theGrid[i] + *other.theGrid[i]);
+		array[i] = f;
+	}
+
+	Vector v(array, this->numRows);
+	return v;
+}
+
+// subtraction
+Vector Vector::operator-(const Vector &other) const{
+	Vector negative = other * -1;
+	return this->operator+(negative);
+}
+
+// see .h file
+bool areSameDimension(const Vector &v1, const Vector &v2){
+	return v1.getNumRows() == v2.getNumRows();
+}
+
+// two vectors are orthogonal if their dot product is 0
+bool areOrthogonal(const Vector &v1, const Vector &v2){
+	return v1 * v2 == 0;
+}

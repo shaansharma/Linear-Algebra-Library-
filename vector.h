@@ -33,16 +33,16 @@ class Vector : public AbstractMatrix {
 	Vector operator*(const Fraction &f) const;
 
 	// dot product
-	int operator*(const Vector &other);
+	Fraction operator*(const Vector &other) const;
 
 	// cross product
-	Vector operator%(const Vector &other);
+	Vector operator%(const Vector &other) const;
 
 	// addition
-	Vector operator+(const Vector &other);
+	Vector operator+(const Vector &other) const;
 
-	// subtracttin
-	Vector operator-(const Vector &other);
+	// subtraction
+	Vector operator-(const Vector &other) const;
 };
 
 // scalar profuct
@@ -51,4 +51,7 @@ Vector operator*(const Fraction &f, const Vector &v);
 
 // two vectors are orthogonal if the angle between them is 90 degrees (pi/2 radians)
 bool areOrthogonal(const Vector &v1, const Vector &v2);
+
+// returns true if and only if two vectors are of the same dimension
+bool areSameDimension(const Vector &v1, const Vector &v2);
 #endif
