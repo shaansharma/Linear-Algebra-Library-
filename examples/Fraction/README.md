@@ -16,4 +16,4 @@ and operator functions that the Fraction class supports. Additionally, you can l
 |**Fraction** reciprocal()| if the Fraction is a/b, returns a new Fraction b/a. Throws an exception if reciprocal doesn't exist (i.e is 0)|
 |**double** toDouble()| returns the division a/b |
 
-Overloaded operators include: =, +=, *=, -=, /=, ++, --, +, -, *, <, >, ==, !=, <=, and >=. See header file for more details.
+Overriden operators include: =, +=, *=, -=, /=, ++, --, +, -, *, <, >, ==, !=, <=, and >=. See header file for more details.
