@@ -4,7 +4,7 @@
 The Fraction class is used by the library to store exact numbers in Vectors and Matrices. 
 The class is meant to be a replacement for integers and inexact decimal numbers. The class overloads many c++ operators
 thus allowing it to be used like an **int** or **double**. The [header file](../../master/fraction.h) contains all member functions 
-and operator functions that the Fraction class supports. Additionally, you can look at the implementation [here](../../master/fraction.cc).
+and operator functions that the Fraction class supports. Additionally, you can look at the implementation [here](../../master/fraction.cc). Example code on using Fractions can be found [here](main.cc).
 
 ###Summary of Methods and Functions
 
