@@ -4,6 +4,7 @@
 
 #ifndef ABSTRACT_MATRIX_H
 #define ABSTRACT_MATRIX_H
+#include <vector>
 class Fraction;
 
 class AbstractMatrix{
@@ -19,6 +20,10 @@ class AbstractMatrix{
 	AbstractMatrix(const int nr, const int nc);
 	AbstractMatrix(const AbstractMatrix &other);
 	
+	AbstractMatrix(int *array, const int nr, const int nc);
+	AbstractMatrix(Fraction **array, const int nr, const int nc);
+	AbstractMatrix(std::vector<Fraction> &v, const int nr, const int nc);
+	
 	AbstractMatrix &operator=(const AbstractMatrix &other);
 
 	// deletes all heap allocated memory
@@ -27,6 +32,7 @@ class AbstractMatrix{
 	// overwrites theGrid, but tries to delete it before overwriting
 	void setData(const int *array, const int r, const int c);
 	void setData(Fraction **array, const int r, const int c);
+	void setData(std::vector<Fraction> &v, const int r, const int c);	
 
 	// throws exception if row or col are out of bounds
 	Fraction at(const int row, const int col = 1) const;

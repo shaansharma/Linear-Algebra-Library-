@@ -12,6 +12,18 @@ AbstractMatrix::AbstractMatrix(const int nr, const int nc): numRows(nr), numCols
 	}
 }
 
+AbstractMatrix::AbstractMatrix(int *array, const int nr, const int nc): numRows(nr), numCols(nc), theGrid(NULL){
+	setData(array, nr, nc);
+}
+
+AbstractMatrix::AbstractMatrix(Fraction **array, const int nr, const int nc): numRows(nr), numCols(nc), theGrid(NULL){
+	setData(array, nr, nc);
+}
+
+AbstractMatrix::AbstractMatrix(vector<Fraction> &v, const int nr, const int nc): numRows(nr), numCols(nc), theGrid(NULL){
+	setData(v, nr, nc);
+}
+
 // deletes theGrid
 AbstractMatrix::~AbstractMatrix(){
 	deleteGrid();	
@@ -42,13 +54,15 @@ AbstractMatrix &AbstractMatrix::operator=(const AbstractMatrix &other){
 
 // deletes theGrid and all of it's contents
 void AbstractMatrix::deleteGrid(){
+	if(this->theGrid == NULL) return;
+
 	int size = this->numRows * this->numCols;
 	
 	for(int i = 0; i < size; i++){
 		delete this->theGrid[i];
 		this->theGrid[i] = NULL;
 	}
-
+	
 	delete [] this->theGrid;
 	this->theGrid = NULL;
 }
@@ -71,6 +85,19 @@ void AbstractMatrix::setData(Fraction **array, const int r, const int c){
 	this->theGrid = array;
 	this->numRows = r;
 	this->numCols = c;
+}
+
+void AbstractMatrix::setData(vector<Fraction> &v, const int r, const int c){
+	deleteGrid();
+	this->numRows = r;
+	this->numCols = c;
+
+	const int size = r * c;
+	this->theGrid = new Fraction*[size];
+
+	for(int i = 0; i < size; i++){
+		this->theGrid[i] = new Fraction(v.at(i));
+	}
 }
 
 void AbstractMatrix::checkBounds(const int row, const int col) const{

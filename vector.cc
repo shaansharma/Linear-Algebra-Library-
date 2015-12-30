@@ -9,26 +9,13 @@ using namespace std;
 
 // constructors
 
-Vector::Vector(int *array, const int r): AbstractMatrix(r, 1){
-	setData(array, r, 1);
-}
+Vector::Vector(int *array, const int r): AbstractMatrix(array, r, 1){}
 
 Vector::Vector(const int r): AbstractMatrix(r, 1){}
 
-Vector::Vector(Fraction **array, const int r): AbstractMatrix(r, 1){
-	setData(array, r, 1);
-}
+Vector::Vector(Fraction **array, const int r): AbstractMatrix(array, r, 1){}
 
-Vector::Vector(vector<Fraction> &v): AbstractMatrix(v.size(), 1){
-	int size = v.size();
-	
-	Fraction **array = new Fraction*[v.size()];
-	for(int i = 0; i < size; i++){
-		array[i] = new Fraction(v.at(i));
-	}
-
-	setData(array, size, 1);
-}
+Vector::Vector(vector<Fraction> &v): AbstractMatrix(v, v.size(), 1){}
 
 // copy constructor
 Vector::Vector(const Vector &other): AbstractMatrix(other){}
