@@ -38,6 +38,10 @@ Vector &Vector::operator=(const Vector &other){
 	return *this;
 }
 
+Fraction &Vector::operator[](const int index){
+	return *this->theGrid[index];
+}
+
 double Vector::getSize() const{
 	return sqrt(getSquareSize().toDouble());
 }

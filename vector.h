@@ -45,6 +45,10 @@ class Vector : public AbstractMatrix {
 
 	// subtraction
 	Vector operator-(const Vector &other) const;
+
+	// operator[] does not check for bounds, and returns a reference for direct manipulation
+	// operator[] is 0 indexed
+	Fraction &operator[](const int index);
 };
 
 // scalar profuct
