@@ -29,10 +29,10 @@ class AbstractMatrix{
 	void setData(Fraction **array, const int r, const int c);
 
 	// throws exception if row or col are out of bounds
-	Fraction at(const int row, const int col = 0) const;
+	Fraction at(const int row, const int col = 1) const;
 		
-	void replace(const Fraction &f, const int row, const int col = 0);
-	void replace(const int i, const int row, const int col = 0);
+	void replace(const Fraction &f, const int row, const int col = 1);
+	void replace(const int i, const int row, const int col = 1);
 
 	// getters
 	int getNumRows() const;
@@ -41,6 +41,9 @@ class AbstractMatrix{
 	// setters
 	void setNumRows(const int r);
 	void setNumColumns(const int c);
+
+	// returns true if and only if the two matrices are scalar multiples of eachother
+	bool isScalarMultipleOf(const AbstractMatrix &other) const;
 };
 
 #endif

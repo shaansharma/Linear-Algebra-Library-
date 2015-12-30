@@ -3,6 +3,8 @@
 
 using namespace std;
 
+const Fraction Fraction::Zero = Fraction(0,1);
+
 // see fraction.h for documentation
 void Fraction::reduce(){
 	int GCD = gcd(abs(this->num), abs(this->den));
@@ -136,6 +138,10 @@ Fraction operator*(const Fraction &f, const int factor){
 
 Fraction operator*(const int factor, const Fraction &f){
 	return f * factor;
+}
+
+Fraction operator/(const Fraction &f1, const Fraction &f2){
+	return f1 * f2.reciprocal();
 }
 
 bool operator<(const Fraction &f1, const Fraction &f2){

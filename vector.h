@@ -5,6 +5,7 @@
 #ifndef VECTOR_H
 #define VECTOR_H
 #include "abstractmatrix.h"
+#include <vector>
 class Fraction;
 
 class Vector : public AbstractMatrix {
@@ -14,6 +15,7 @@ class Vector : public AbstractMatrix {
 	Vector(const int r);
 	Vector(Fraction **array = 0, const int r = 1);
 	Vector(const Vector &other);
+	Vector(std::vector<Fraction> &v);
 	
 	Vector &operator=(const Vector &other);
 

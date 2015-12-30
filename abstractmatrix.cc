@@ -5,7 +5,12 @@
 
 using namespace std;
 
-AbstractMatrix::AbstractMatrix(const int nr, const int nc): numRows(nr), numCols(nc), theGrid(new Fraction*[nr * nc]){}
+AbstractMatrix::AbstractMatrix(const int nr, const int nc): numRows(nr), numCols(nc), theGrid(new Fraction*[nr * nc]){
+	const int size = nr * nc;
+	for(int i = 0; i < size; i++){
+		this->theGrid[i] = NULL;
+	}
+}
 
 // deletes theGrid
 AbstractMatrix::~AbstractMatrix(){
@@ -15,7 +20,7 @@ AbstractMatrix::~AbstractMatrix(){
 AbstractMatrix::AbstractMatrix(const AbstractMatrix &other){
 	this->theGrid = new Fraction *[other.numRows * other.numCols];
 	this->numRows = other.numRows;
-	this->numCols = other.numRows;
+	this->numCols = other.numCols;
 	
 	const int size = this->numRows * this->numCols;
 	for(int i = 0; i < size; i++){
@@ -82,6 +87,35 @@ Fraction AbstractMatrix::at(const int row, const int col) const{
 	return *this->theGrid[(row-1) * this->numCols + (col-1)];
 }
 
+bool AbstractMatrix::isScalarMultipleOf(const AbstractMatrix &other) const{
+	if(this->numRows != other.numRows || this->numCols != other.numCols) return false;
+	
+	const int size = this->numRows * this->numCols;
+	
+	if(size <= 0) return false;
+	Fraction factor; // initialized to 0
+	bool LHSZero = false;	
+
+	if(*this->theGrid[0] != Fraction::Zero && *other.theGrid[0] != Fraction::Zero){
+		factor = *this->theGrid[0] / *other.theGrid[0];
+	} else if(*this->theGrid[0] == Fraction::Zero){
+		LHSZero = true;
+	}
+	
+	for(int i = 1; i < size; i++){
+		if(factor == Fraction::Zero){
+			if(LHSZero){ // check that the LHS is zero
+				if(*this->theGrid[i] != Fraction::Zero) return false;
+			} else { // check RHS is zero
+				if(*other.theGrid[i] != Fraction::Zero) return false;
+			}
+		} else { // divide fractions, check factor
+			if(factor != *this->theGrid[i] / *other.theGrid[i]) return false;
+		}
+	}	
+
+	return true;
+}
 
 void AbstractMatrix::replace(const Fraction &f, const int row, const int col){
 	checkBounds(row, col);

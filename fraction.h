@@ -71,6 +71,9 @@ Fraction operator*(const Fraction &f1, const Fraction &f2);
 Fraction operator*(const Fraction &f, const int factor);
 Fraction operator*(const int factor, const Fraction &f);
 
+// divides two fractions
+Fraction operator/(const Fraction &f1, const Fraction &f2);
+
 // compares two fractions, returns true if f1 < f2
 // use: f1 < f2 
 bool operator<(const Fraction &f1, const Fraction &f2);
