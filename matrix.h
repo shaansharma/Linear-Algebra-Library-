@@ -93,6 +93,12 @@ class Matrix : public AbstractMatrix {
 	// returns true if and only if all entries above the diagonal of the matrix is 0
 	// requies the matrix is nxn (throws exception otherwise)
 	bool isLowerTriangular() const;
+
+	// rotates the matrix clockwise
+	Matrix &rotateRight();
+
+	// rotates the matrix counter-clockwise
+	Matrix &rotateLeft();
 };
 
 // returns the concatination (horizontally) of ab1 and ab2
