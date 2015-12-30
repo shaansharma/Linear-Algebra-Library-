@@ -47,7 +47,7 @@ class Vector : public AbstractMatrix {
 	Vector operator-(const Vector &other) const;
 
 	// operator[] does not check for bounds, and returns a reference for direct manipulation
-	// operator[] is 0 indexed
+	// operator[] is NOT 0 indexed
 	Fraction &operator[](const int index);
 };
 

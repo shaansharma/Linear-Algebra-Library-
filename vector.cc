@@ -26,7 +26,7 @@ Vector &Vector::operator=(const Vector &other){
 }
 
 Fraction &Vector::operator[](const int index){
-	return *this->theGrid[index];
+	return *this->theGrid[index - 1];
 }
 
 double Vector::getSize() const{
