@@ -9,6 +9,7 @@
 class Vector;
 class Fraction;
 class SpanningSet;
+class EigenPair;
 
 class Matrix : public AbstractMatrix {
 	public:
@@ -99,10 +100,37 @@ class Matrix : public AbstractMatrix {
 
 	// rotates the matrix counter-clockwise
 	Matrix &rotateLeft();
+
+	Fraction getCofactor(const int i, const int j) const;
+	Fraction getAdjugate(const int i, const int j) const;
+
+	// returns true if and only if all entries that are not along the diagonal are 0
+	bool isDiagonal() const;
+
+	// returns true if the given vector is a eigen vector of the matrix
+	bool hasEigenVector(const Vector &v) const;
+
+	// returns the Eigen value for the given vector, throws an exception if given vector is not
+	// an eigen vector of the matrix. 
+	Fraction getEigenValue(const Vector &v) const;
+
+	// returns the eigen pair if one exists for the given vector
+	EigenPair getEigenPair(const Vector &v) const;
+
+	// returns true if and only if the given matrix diagnoalizes this matrix
+	bool isDiagonalizedBy(const Matrix &m) const;
+
+	// returns a nxn Identity Matrix
+	static Matrix getIdentityMatrix(const int n);
 };
 
 // returns the concatination (horizontally) of ab1 and ab2
 Matrix buildAugmentedMatrix(const AbstractMatrix &ab1, const AbstractMatrix &ab2);
+
+// returns the diagonal matrix with the given params
+Matrix buildDiagonalMatrix(const int *array);
+Matrix buildDiagonalMatrix(const std::vector<Fraction> &v);
+Matrix buildDiagonalMatrix(const Fraction **array);
 
 // returns true if two matrices share the same row space
 bool areRowEquivalent(const Matrix &m1, const Matrix &m2);
