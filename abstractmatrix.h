@@ -5,6 +5,7 @@
 #ifndef ABSTRACT_MATRIX_H
 #define ABSTRACT_MATRIX_H
 #include <vector>
+#include <string>
 class Fraction;
 
 class AbstractMatrix{
@@ -23,6 +24,7 @@ class AbstractMatrix{
 	AbstractMatrix(int *array, const int nr, const int nc);
 	AbstractMatrix(Fraction **array, const int nr, const int nc);
 	AbstractMatrix(std::vector<Fraction> &v, const int nr, const int nc);
+	AbstractMatrix(const std::string &fileName);
 	
 	AbstractMatrix &operator=(const AbstractMatrix &other);
 

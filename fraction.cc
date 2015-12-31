@@ -1,5 +1,7 @@
 #include "fraction.h"
 #include <stdexcept>
+#include <string>
+#include <sstream>
 
 using namespace std;
 
@@ -43,6 +45,22 @@ Fraction Fraction::getAbsolute() const {
 Fraction::Fraction(const int num, const int den): num(num), den(den){}
 
 Fraction::Fraction(const Fraction &other): num(other.num), den(other.den){}
+
+// expects a valid fraction as string
+Fraction::Fraction(const string &s){
+	stringstream in(s);
+	
+	in >> this->num;
+	string garbage;
+	in >> garbage;
+	
+	// read denominator
+	if(!in.eof()){
+		in >> this->den;
+	} else {
+		this->den = 1;
+	}
+}
 
 // getters and setters
 void Fraction::setNumerator(const int num){

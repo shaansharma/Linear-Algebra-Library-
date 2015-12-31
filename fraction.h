@@ -5,6 +5,7 @@
 #ifndef FRACTION_H
 #define FRACTION_H
 #include <stdexcept>
+#include <string>
 
 class Fraction{
 	int num, den;
@@ -18,6 +19,7 @@ class Fraction{
 	static const Fraction Zero;
 
 	Fraction(const int num = 0, const int den = 1);
+	Fraction(const std::string &s);
 	Fraction(const Fraction &other);
 	
 	// getters and settersi

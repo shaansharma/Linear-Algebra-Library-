@@ -2,6 +2,8 @@
 #include "abstractmatrix.h"
 #include <iostream>
 #include <stdexcept>
+#include <string>
+#include <fstream>
 
 using namespace std;
 
@@ -22,6 +24,10 @@ AbstractMatrix::AbstractMatrix(Fraction **array, const int nr, const int nc): nu
 
 AbstractMatrix::AbstractMatrix(vector<Fraction> &v, const int nr, const int nc): numRows(nr), numCols(nc), theGrid(NULL){
 	setData(v, nr, nc);
+}
+
+AbstractMatrix::AbstractMatrix(const string &fileName){
+	
 }
 
 // deletes theGrid
