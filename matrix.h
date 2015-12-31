@@ -6,6 +6,7 @@
 #define MATRIX_H
 #include "abstractmatrix.h"
 #include <vector>
+
 class Vector;
 class Fraction;
 class SpanningSet;
