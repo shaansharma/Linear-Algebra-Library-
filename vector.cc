@@ -29,6 +29,10 @@ Fraction &Vector::operator[](const int index){
 	return *this->theGrid[index - 1];
 }
 
+int Vector::getDimension() const{
+	return this->numRows;
+}
+
 double Vector::getSize() const{
 	return sqrt(getSquareSize().toDouble());
 }

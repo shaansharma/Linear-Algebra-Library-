@@ -49,6 +49,9 @@ class Vector : public AbstractMatrix {
 	// operator[] does not check for bounds, and returns a reference for direct manipulation
 	// operator[] is NOT 0 indexed
 	Fraction &operator[](const int index);
+
+	// returns the number of rows in vector
+	int getDimension() const;
 };
 
 // scalar profuct
