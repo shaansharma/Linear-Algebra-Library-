@@ -27,7 +27,20 @@ AbstractMatrix::AbstractMatrix(vector<Fraction> &v, const int nr, const int nc):
 }
 
 AbstractMatrix::AbstractMatrix(const string &fileName){
-	
+	filestream file(fileName);
+
+	// first two numbers are height and width respectively
+	file >> this->numRows;
+	file >> this->numCols;
+
+	const int size = this->numRows * this->numCols;
+	this->theGrid = new Fraction *[size];
+
+	for(int i = 0; i < size; i++){
+		string s;
+		file >> s;
+		this->theGrid[i] = new Fraction(s);
+	}	
 }
 
 // deletes theGrid
