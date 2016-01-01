@@ -1,6 +1,7 @@
 #include "spanningset.h"
 #include <vector>
 #include "vector.h"
+#include "fraction.h"
 #include <stdexcept>
 
 using namespace std;
@@ -23,7 +24,7 @@ int SpanningSet::getNumVectors() const{
 	return this->set.size();
 }
 
-// TODO: finish method
+// TODO: finish method; -> convert to matrix -> row reduce -> check rank
 bool SpanningSet::isLinearlyIndependent() const{
 	return true;
 }
@@ -36,12 +37,30 @@ Vector SpanningSet::operator[](const int i) const{
 	return at(i);
 }
 
-// TODO: finish method
-Matrix SpanningSet::toMatrix() const{
-	
+
+Matrix SpanningSet::toMatrix() const {
+	const int numCols = getNumVectors();
+	const int numRows = this->set.at(0).getDimension();
+
+	Fraction **array = new Fraction*[numCols * numRows];	
+	for(int i = 0; i < numRows; i++){
+		for(int j = 0; j < numCols; j++){
+			array[i * numCols + j] = new Fraction(this->set.at(j).at(i + 1));	
+		}
+	}
+	return Matrix(array, numRows, numCols);
 }
 
-// TODO: finish method
-static SpanningSet SpanningSet::getStandardBasis(const int dimension){
+static SpanningSet getStandardBasis(const int dimension){
+	vector<Vector> v; // store vectors in this, give to constructor
 	
+	for(int i = 0; i < dimension; i++){
+		Fraction **array = new Fraction*[dimension];
+		for(int j = 0; j < dimension; j++){
+			// fraction is either 1 if and only if i == j
+			array[j] = new Fraction(i == j ? 1 : 0);
+			v.push_back(Vector(array), dimension);
+		}
+	}
+	return SpanningSet(v);
 }
