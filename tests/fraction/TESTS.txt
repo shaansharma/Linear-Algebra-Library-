@@ -2,3 +2,5 @@ ctor
 add
 multiply
 whole
+equals
+recip
