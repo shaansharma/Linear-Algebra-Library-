@@ -1,0 +1,101 @@
+#!/bin/bash
+# runSuite [test stem file] [program]
+# runs tests cases from args1 to program and comapres output
+
+scriptName=${0}
+stemFile=${1}
+runnableProgram=${2}
+
+# Incorrect Args Error
+# PRE: $1=# of args given to script
+incorrectArgs () {
+	echo "${scriptName}: Inncorrect Number of Arguments (${1})" 1>&2
+	exit 1
+}
+
+# Missing .in file
+# PRE: $1=name of missing .in file
+missingIn () {
+	echo "${scriptName}: Missing input file or is not readable: ${1}.in" 1>&2
+	exit 2
+}
+
+# Missing .out file
+# PRE: $1=name of missing .out file
+missingOut () {
+	echo "${scriptName}: Missing output file or is not readable: ${1}.out" 1>&2
+	exit 3
+}
+
+# Mising program file
+# PRE: $1=program file name
+missingProgram () {
+	echo "${scriptName}: ${1} program not found or is unexecutable" 1>&2
+	exit 4
+}
+
+# Outputs differ message
+# PRE: $1=test file name $2=input $3=expected output $4=actual output
+outputMismatch () {
+	echo "Test failed: ${1}"
+	echo "Input:"
+	echo "${2}"
+	echo "Expected:"
+	echo "${3}"
+	echo "Actual:"
+	echo "${4}"
+}
+
+# Check args number
+
+if [ ${#} -ne 2 ]; then
+	incorrectArgs ${#}
+fi
+
+# Check for missing files..
+testCases=`cat ${stemFile}`
+
+for file in ${testCases}; do 
+	if [ ! -r "${file}.in" ]; then
+		missingIn ${file}
+	fi
+
+	if [ ! -r "${file}.out" ]; then
+		missingOut ${file}
+	fi
+done
+
+# Check to see if program exists
+#if [ ! -x ${runnableProgram} ]; then 
+#	missingProgram ${runnableProgram}
+#fi
+
+
+# Loop through all .in files in testCases
+for file in ${testCases}; do 
+	inFile="${file}.in"
+	outFile="${file}.out"
+	IN_TEMP=`mktemp`	
+	
+	input=`cat ${inFile}`
+	echo "${input}" > ${IN_TEMP}	
+	
+	# Check for args file.
+	args=''
+	
+	if [ -r "${file}.args" ]; then
+		args=`cat "${file}.args"`
+	fi
+		
+	# Store output in actualOut
+	actualOut=`${runnableProgram} ${args} < "${IN_TEMP}"`
+	expectedOut=`cat ${outFile}`
+	
+	# Compare Outputs
+	if [ "${actualOut}" != "${expectedOut}" ]; then
+		outputMismatch "${file}" "${input}" "${expectedOut}" "${actualOut}"
+	fi	
+
+	# remove IN_TEMP
+	rm ${IN_TEMP}
+done
