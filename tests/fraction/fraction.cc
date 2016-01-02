@@ -62,6 +62,7 @@ Fraction::Fraction(const string &s){
 	} else {
 		this->den = 1;
 	}
+	reduce();
 }
 
 // getters and setters
