@@ -10,9 +10,12 @@
 class Vector;
 class Fraction;
 class SpanningSet;
-class EigenPair;
+//class EigenPair;
 
 class Matrix : public AbstractMatrix {
+	// throws exception if *this and other have different sizes
+	void checkBounds(const Matrix &other);
+	
 	public:
 
 	// constructors
@@ -22,8 +25,9 @@ class Matrix : public AbstractMatrix {
 	Matrix(const Matrix &other);
 	
 	// matrix[index] returns the horizontal Vector located at row [index] - 1.
-	// operator[] is NOT 0 indexed (to keep consistent with the mathimatical definition). 
-	Vector &operator[](const int index);
+	// operator[] is NOT 0 indexed (to keep consistent with the mathimatical definition).
+	// this operator can be used to directly change the value located at this index. 
+	Vector operator[](const int index);
 
 	// uses guass jordan elimination to row reduce the matrix, returns a reference to the reduced matrix.
 	Matrix &rowReduce();
@@ -116,7 +120,7 @@ class Matrix : public AbstractMatrix {
 	Fraction getEigenValue(const Vector &v) const;
 
 	// returns the eigen pair if one exists for the given vector
-	EigenPair getEigenPair(const Vector &v) const;
+	// EigenPair getEigenPair(const Vector &v) const;
 
 	// returns true if and only if the given matrix diagnoalizes this matrix
 	bool isDiagonalizedBy(const Matrix &m) const;
