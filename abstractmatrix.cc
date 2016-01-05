@@ -60,6 +60,7 @@ AbstractMatrix::AbstractMatrix(const AbstractMatrix &other){
 }
 
 AbstractMatrix &AbstractMatrix::operator=(const AbstractMatrix &other){
+	if(&other == this) return *this;
 	deleteGrid();
 	this->theGrid = new Fraction *[other.numRows * other.numCols];
 	this->numRows = other.numRows;
