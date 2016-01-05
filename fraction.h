@@ -6,6 +6,7 @@
 #define FRACTION_H
 #include <stdexcept>
 #include <string>
+#include <ostream>
 
 class Fraction{
 	int num, den;
@@ -99,4 +100,7 @@ bool operator<=(const Fraction &f1, const Fraction &f2);
 // compares two fractions, returns true if f1 >= f2
 // use: f1 >= f2
 bool operator>=(const Fraction &f1, const Fraction &f2);
+
+// used for cout
+std::ostream &operator<<(std::ostream &out, const Fraction &f); 
 #endif

@@ -4,6 +4,7 @@
 #include <cmath>
 #include <stdexcept>
 #include <vector>
+#include <ostream>
 
 using namespace std;
 
@@ -128,4 +129,10 @@ bool areSameDimension(const Vector &v1, const Vector &v2){
 // two vectors are orthogonal if their dot product is 0
 bool areOrthogonal(const Vector &v1, const Vector &v2){
 	return v1 * v2 == 0;
+}
+
+// output operator for fractions
+ostream &operator<<(ostream &out, const Fraction &f){
+	out << f.getNumerator() << "/" << f.getDenominator();
+	return out;
 }
