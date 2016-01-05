@@ -196,4 +196,8 @@ bool operator>=(const Fraction &f1, const Fraction &f2){
 	return f1 > f2 || f1 == f2;
 }
 
-
+// output operator for fractions
+ostream &operator<<(ostream &out, const Fraction &f){
+	out << f.getNumerator() << "/" << f.getDenominator();
+	return out;
+}
