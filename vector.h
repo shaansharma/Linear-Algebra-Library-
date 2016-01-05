@@ -6,6 +6,8 @@
 #define VECTOR_H
 #include "abstractmatrix.h"
 #include <vector>
+#include <ostream>
+
 class Fraction;
 
 class Vector : public AbstractMatrix {
@@ -63,4 +65,7 @@ bool areOrthogonal(const Vector &v1, const Vector &v2);
 
 // returns true if and only if two vectors are of the same dimension
 bool areSameDimension(const Vector &v1, const Vector &v2);
+
+// operator<< for vectors
+std::ostream &operator<<(std::ostream &out, const Vector &v);
 #endif

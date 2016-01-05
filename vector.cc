@@ -131,8 +131,4 @@ bool areOrthogonal(const Vector &v1, const Vector &v2){
 	return v1 * v2 == 0;
 }
 
-// output operator for fractions
-ostream &operator<<(ostream &out, const Fraction &f){
-	out << f.getNumerator() << "/" << f.getDenominator();
-	return out;
-}
+
