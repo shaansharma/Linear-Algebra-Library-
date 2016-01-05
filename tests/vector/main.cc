@@ -29,18 +29,21 @@ int main(){
 	}
 	return 0;
 	// make sure a seperate copy is made, i.e vectors are not sharing same memory
-	//	assert(&(v1[0]) != &(v2[0]));
+	assert(&(v1[0]) != &(v2[0]));
 
 	v2[0] = Fraction(3);
 	v2[1] = Fraction(2);
 	v2[2] = Fraction(1);
 
 	assert(v1[0] != v2[0]);
-
-	cout << v1 << endl << v2 << endl;
+	
+	cout << v1 << endl;
+	cout << v2 << endl; 
 	Vector v3 = v1.projectionOnto(v2);
 
 	assert(v3[0] == Fraction(15, 7));
 	assert(v3[1] == Fraction(10, 7));
 	assert(v3[2] == Fraction(5, 7));
+
+	
 }

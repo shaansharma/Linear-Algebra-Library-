@@ -131,11 +131,11 @@ bool areOrthogonal(const Vector &v1, const Vector &v2){
 	return v1 * v2 == 0;
 }
 
-ostream &operator<<(ostream &out, Vector &v){
+ostream &operator<<(ostream &out, const Vector &v){
 	int size = v.getDimension();
-
+	
 	for(int i = 1; i <= size; i++){
-		out << v[i];
+		out << v.at(i);
 		if(i != size){
 			out << " ";
 		}

@@ -67,5 +67,5 @@ bool areOrthogonal(const Vector &v1, const Vector &v2);
 bool areSameDimension(const Vector &v1, const Vector &v2);
 
 // operator<< for vectors
-std::ostream &operator<<(std::ostream &out, Vector &v);
+std::ostream &operator<<(std::ostream &out, const Vector &v);
 #endif
