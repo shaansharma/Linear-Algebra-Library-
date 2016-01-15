@@ -25,7 +25,7 @@ double Fraction::toDouble() const{
 }
 
 Fraction Fraction::reciprocal() const{	
-	if(this->den == 0) throw logic_error("0 has no real reciprocal");
+	if(this->num == 0) throw logic_error("0 has no real reciprocal");
 	return Fraction(this->den, this->num);
 }
 
